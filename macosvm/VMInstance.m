@@ -107,8 +107,8 @@
     if (!displays) {
         displays = @[
             @{
-                @"width": @2560,
-                @"height": @1600,
+                @"width": @3032,
+                @"height": @1896,
                 @"dpi": @200
             }
         ];
@@ -654,7 +654,7 @@ void add_unlink_on_exit(const char *fn); /* from main.m - a bit hacky but more s
     VZMacGraphicsDeviceConfiguration *graphics = [[VZMacGraphicsDeviceConfiguration alloc] init];
     NSMutableArray *disp = [NSMutableArray arrayWithCapacity:displays ? [displays count] : 1];
     if (displays) for (NSDictionary *d in displays) {
-        int width = 2560, height = 1600, dpi = 200;
+        int width = 3032, height = 1896, dpi = 200;
         id tmp;
         if ((tmp = d[@"width"]) && [tmp isKindOfClass:[NSNumber class]]) width = (int)[tmp integerValue];
         if ((tmp = d[@"height"]) && [tmp isKindOfClass:[NSNumber class]]) height = (int)[tmp integerValue];
