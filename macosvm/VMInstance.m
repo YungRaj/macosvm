@@ -807,6 +807,13 @@ void add_unlink_on_exit(const char *fn); /* from main.m - a bit hacky but more s
         @throw [NSException exceptionWithName:@"VMConfigError" reason:[err description] userInfo:nil];
     //queue = dispatch_get_main_queue(); //dispatch_queue_create("macvm", DISPATCH_QUEUE_SERIAL);
     queue = dispatch_queue_create("macvm", DISPATCH_QUEUE_SERIAL);
+    
+    Class DebugStubClass = NSClassFromString(@"_VZGDBDebugStubConfiguration");
+    id<_VZGDBDebugStubConfiguration> debugStub = [[DebugStubClass alloc] initWithPort:8864];
+
+    id<_VZVirtualMachineConfiguration> config = (id<_VZVirtualMachineConfiguration>)spec_;
+    config._debugStub = debugStub;
+    
     self.virtualMachine = [[VZVirtualMachine alloc] initWithConfiguration:_spec queue:queue];
     NSLog(@" init OK");
     return self;

@@ -5,6 +5,44 @@
 #define MACOS_GUEST 1
 #endif
 
+#import <Foundation/Foundation.h>
+
+@protocol _VZGDBDebugStubConfiguration <NSObject>
+- (instancetype)initWithPort:(NSInteger)port;
+@end
+
+
+@protocol _VZVirtualMachineConfiguration <NSObject>
+@property (nonatomic, strong, setter=_setDebugStub:) id<_VZGDBDebugStubConfiguration> _debugStub;
+@end
+
+
+@protocol _VZVirtualMachineStartOptions <NSObject>
+- (instancetype)init;
+
+// Deprecated before macOS 13
+@property (nonatomic, assign) BOOL panicAction;
+@property (nonatomic, assign) BOOL stopInIBootStage1;
+@property (nonatomic, assign) BOOL stopInIBootStage2;
+@property (nonatomic, assign) BOOL bootMacOSRecovery;
+@property (nonatomic, assign) BOOL forceDFU;
+
+// macOS 13 and later (renamed setters)
+@property (nonatomic, assign, setter=_setPanicAction:) BOOL _panicAction;
+@property (nonatomic, assign, setter=_setStopInIBootStage1:) BOOL _stopInIBootStage1;
+@property (nonatomic, assign, setter=_setStopInIBootStage2:) BOOL _stopInIBootStage2;
+@property (nonatomic, assign, setter=_setForceDFU:) BOOL _forceDFU;
+@end
+
+
+@protocol _VZVirtualMachine <NSObject>
+
+- (void)_startWithOptions:(id<_VZVirtualMachineStartOptions>)options
+        completionHandler:(void (^)(NSError * _Nullable error))completionHandler;
+
+@end
+
+
 @interface VMSpec : VZVirtualMachineConfiguration {
     NSData  *machineIdentifierData, *hardwareModelData;
     NSArray *storage;

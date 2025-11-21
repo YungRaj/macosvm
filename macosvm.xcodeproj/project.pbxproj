@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		68642D4B27434F1E00B70B7C /* Virtualization.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68642D4A27434F1E00B70B7C /* Virtualization.framework */; };
-		68CB16482743A4890057E929 /* VMInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CB16472743A4890057E929 /* VMInstance.m */; };
+		68CB16482743A4890057E929 /* VMInstance.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CB16472743A4890057E929 /* VMInstance.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		68CB164A2743D8E90057E929 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 68CB16492743D8E90057E929 /* main.m */; };
 /* End PBXBuildFile section */
 
